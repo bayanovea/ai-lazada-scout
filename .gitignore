@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+# real shopping data lives in $LAZADA_SCOUT_HOME; only the sample is tracked
+lazada_dump*.json
+data/pdp/
+data/candidates.txt
+data/headed.log
+shortlist-*.md
+remaining.md
+.claude/
+.DS_Store

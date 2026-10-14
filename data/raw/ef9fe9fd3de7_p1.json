@@ -1,0 +1,66 @@
+{
+ "mods": {
+  "listItems": [
+   {
+    "itemId": "4786749506",
+    "name": "LI MEIเครื่องชั่งดิจิตอล แสตนเลส 10 กิโล รุ่นใหม่ ของแท้ มีร",
+    "price": "135",
+    "ratingScore": "4.945729205520328",
+    "review": "10724",
+    "itemSoldCntShow": "37.9K sold",
+    "location": "Bangkok",
+    "inStock": true,
+    "tItemType": "nt_product",
+    "isSponsored": false,
+    "icons": [
+     {
+      "bizType": "Freeshipping"
+     },
+     {
+      "bizType": "voucherApplied"
+     }
+    ]
+   },
+   {
+    "itemId": "4880950827",
+    "name": "（จัดส่งในวันเดียวกัน）เครื่องชั่งดิจิตอล แสตนเลส 10 กิโล รุ่น",
+    "price": "75",
+    "ratingScore": "4.945059717698154",
+    "review": "4605",
+    "itemSoldCntShow": "17.3K sold",
+    "location": "Pathum Thani",
+    "inStock": true,
+    "tItemType": "nt_product",
+    "isSponsored": false,
+    "icons": [
+     {
+      "bizType": "Freeshipping"
+     },
+     {
+      "bizType": "campaign"
+     }
+    ]
+   },
+   {
+    "itemId": "4695608316",
+    "name": "10kg/1G waterproof food scales rechargeable battery with Dis",
+    "price": "95",
+    "ratingScore": "4.919154228855722",
+    "review": "804",
+    "itemSoldCntShow": "3.0K sold",
+    "location": "Bangkok",
+    "inStock": true,
+    "tItemType": "nt_product",
+    "isSponsored": false,
+    "icons": [
+     {
+      "bizType": "Freeshipping"
+     },
+     {
+      "bizType": "voucherApplied"
+     }
+    ]
+   }
+  ]
+ }
+}

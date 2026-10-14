@@ -1,0 +1,72 @@
+{
+ "mods": {
+  "listItems": [
+   {
+    "itemId": "5307905593",
+    "name": "Floor Mop Standard Size Mop Spinning Bucket Spinning Bucket",
+    "price": "168",
+    "ratingScore": "4.930101824352991",
+    "review": "9428",
+    "itemSoldCntShow": "26.9K sold",
+    "location": "Bangkok",
+    "inStock": true,
+    "tItemType": "nt_product",
+    "isSponsored": false,
+    "icons": [
+     {
+      "bizType": "voucherApplied"
+     }
+    ]
+   },
+   {
+    "itemId": "2608425836",
+    "name": "Swash Spin Mop with Handle - Swash Spin Bucket Set, 4 Models",
+    "price": "846",
+    "ratingScore": "4.9324512534818945",
+    "review": "1436",
+    "itemSoldCntShow": "5.0K sold",
+    "location": "Bangkok",
+    "inStock": true,
+    "tItemType": "nt_product",
+    "isSponsored": false,
+    "icons": [
+     {
+      "bizType": "Freeshipping"
+     },
+     {
+      "bizType": "voucherApplied"
+     },
+     {
+      "bizType": "campaign"
+     },
+     {
+      "bizType": "lazMall"
+     }
+    ]
+   },
+   {
+    "itemId": "11668472",
+    "name": "Poly-Brite โพลี-ไบรท์ ชุดถังปั่น รุ่นเฮอร์ริเคน ม็อบถังปั่น",
+    "price": "1165",
+    "ratingScore": "4.9555815312682645",
+    "review": "1711",
+    "itemSoldCntShow": "4.7K sold",
+    "location": "Bangkok",
+    "inStock": true,
+    "tItemType": "nt_product",
+    "isSponsored": false,
+    "icons": [
+     {
+      "bizType": "voucherApplied"
+     },
+     {
+      "bizType": "campaign"
+     },
+     {
+      "bizType": "lazMall"
+     }
+    ]
+   }
+  ]
+ }
+}

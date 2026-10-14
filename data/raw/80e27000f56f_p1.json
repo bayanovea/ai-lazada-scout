@@ -1,0 +1,69 @@
+{
+ "mods": {
+  "listItems": [
+   {
+    "itemId": "5277372577",
+    "name": "เครื่องชั่งดิจิตอล เครื่องชั่งกาแฟ ตาชั่งดิจิตอล เครื่องชั่ง",
+    "price": "175",
+    "ratingScore": "4.944144144144144",
+    "review": "1110",
+    "itemSoldCntShow": "3.0K sold",
+    "location": "Pathum Thani",
+    "inStock": true,
+    "tItemType": "nt_product",
+    "isSponsored": false,
+    "icons": [
+     {
+      "bizType": "voucherApplied"
+     },
+     {
+      "bizType": "campaign"
+     }
+    ]
+   },
+   {
+    "itemId": "5046061068",
+    "name": "Timecafe Digital Coffee Scale, Timer, Rechargeable, Led Disp",
+    "price": "119",
+    "ratingScore": "4.928902627511592",
+    "review": "647",
+    "itemSoldCntShow": "2.1K sold",
+    "location": "Bangkok",
+    "inStock": true,
+    "tItemType": "nt_product",
+    "isSponsored": false,
+    "icons": [
+     {
+      "bizType": "Freeshipping"
+     },
+     {
+      "bizType": "voucherApplied"
+     }
+    ]
+   },
+   {
+    "itemId": "5545692250",
+    "name": "Digital Coffee Scale 5/3 Kg. With Digital Screen, 0.1 Gram,",
+    "price": "166",
+    "ratingScore": "4.963436928702011",
+    "review": "547",
+    "itemSoldCntShow": "1.7K sold",
+    "location": "Samut Prakan",
+    "inStock": true,
+    "tItemType": "nt_product",
+    "isSponsored": false,
+    "icons": [
+     {
+      "bizType": "Freeshipping"
+     },
+     {
+      "bizType": "voucherApplied"
+     },
+     {
+      "bizType": "lazMall"
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,3 @@
+pytest>=7
+# optional, only for the Playwright fallback fetcher (scrape.py):
+#   pip install playwright && playwright install chromium

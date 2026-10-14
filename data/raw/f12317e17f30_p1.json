@@ -1,0 +1,63 @@
+{
+ "mods": {
+  "listItems": [
+   {
+    "itemId": "1959626024",
+    "name": "Allsking mop, floor mop, built-in water mop, dust pressure m",
+    "price": "248",
+    "ratingScore": "4.90464048954615",
+    "review": "1961",
+    "itemSoldCntShow": "7.1K sold",
+    "location": "Pathum Thani",
+    "inStock": true,
+    "tItemType": "nt_product",
+    "isSponsored": false,
+    "icons": [
+     {
+      "bizType": "voucherApplied"
+     },
+     {
+      "bizType": "lazMall"
+     }
+    ]
+   },
+   {
+    "itemId": "5003599227",
+    "name": "DTG【แผงยาวขึ้น42CM-50CM】ม็ม็อบฉีดน้ำ ไม้ถูพื้น ไม้ถูพื้นแบบร",
+    "price": "119",
+    "ratingScore": "4.945945945945946",
+    "review": "740",
+    "itemSoldCntShow": "2.0K sold",
+    "location": "Samut Sakhon",
+    "inStock": true,
+    "tItemType": "nt_product",
+    "isSponsored": false,
+    "icons": [
+     {
+      "bizType": "voucherApplied"
+     }
+    ]
+   },
+   {
+    "itemId": "3086934905",
+    "name": "Flat Mop Lazy Mop Washing Mop Automatic Hand Mop",
+    "price": "69",
+    "ratingScore": "4.883495145631068",
+    "review": "10403",
+    "itemSoldCntShow": "33.1K sold",
+    "location": "Samut Prakan",
+    "inStock": true,
+    "tItemType": "nt_product",
+    "isSponsored": false,
+    "icons": [
+     {
+      "bizType": "Freeshipping"
+     },
+     {
+      "bizType": "voucherApplied"
+     }
+    ]
+   }
+  ]
+ }
+}
