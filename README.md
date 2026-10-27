@@ -1,6 +1,6 @@
-# lazada-scout
+# ai-lazada-scout
 
-[![ci](https://github.com/bayanovea/lazada-scout/actions/workflows/ci.yml/badge.svg)](https://github.com/bayanovea/lazada-scout/actions/workflows/ci.yml)
+[![ci](https://github.com/bayanovea/ai-lazada-scout/actions/workflows/ci.yml/badge.svg)](https://github.com/bayanovea/ai-lazada-scout/actions/workflows/ci.yml)
 
 A shopping scout for Lazada Thailand, operated by Claude Code. I give it a household list in
 Russian, often without knowing the Thai or even the right English name for the thing ("the mop
@@ -39,7 +39,7 @@ scale), two subtypes each, three real candidates per subtype, with the raw listi
 fields the scripts read.
 
 ```sh
-git clone https://github.com/bayanovea/lazada-scout && cd lazada-scout
+git clone https://github.com/bayanovea/ai-lazada-scout && cd ai-lazada-scout
 pip install -r requirements.txt
 python -m pytest -q
 python analyze.py          # the ranked table Claude Code reads
