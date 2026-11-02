@@ -1,3 +1,2 @@
 pytest>=7
-# optional, only for the Playwright fallback fetcher (scrape.py):
-#   pip install playwright && playwright install chromium
+playwright  # fetch.py only connects to Chromium-Gost over CDP; no `playwright install` needed

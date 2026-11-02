@@ -7,15 +7,15 @@ Russian, often without knowing the Thai or even the right English name for the t
 with the spinning bucket"). The tool fetches the listings, ranks them, and Claude Code splits
 every item into the two or three subtypes that are a real choice, picks a few candidates each and
 says in one line why. I read a short annotated list with links and decide in a minute instead of
-browsing for half an hour. I never search Lazada myself; the only hand work is pasting one script
-into the browser console.
+browsing for half an hour. I never search Lazada myself; at most I solve a captcha in the
+browser window the fetcher opens.
 
 ## How it works
 
 ```mermaid
 flowchart LR
     L["shopping list<br/>in Russian"] --> Q["queries.py<br/>item → subtype → Thai/English query"]
-    Q --> C["console_fetch.js<br/>pasted into DevTools on lazada.co.th"]
+    Q --> C["fetch.py<br/>in-page fetch in Chromium-Gost over CDP"]
     C --> R[("data/raw/&lt;md5(query)&gt;_p1.json<br/>raw listings")]
     R --> A["analyze.py<br/>local sellers · Bayesian rating · log-sold bonus"]
     A -->|ranked table| K["Claude Code<br/>reads, chooses subtypes and candidates"]
@@ -69,9 +69,10 @@ picking rules Claude Code follows.
 
 To use it for real, keep your data outside the checkout: `export LAZADA_SCOUT_HOME=$HOME/.lazada-scout`
 with your own `queries.py`, `picks.py`, `cart.py` and `data/raw` there, in the same layout. A
-shopping round is: add queries, paste the same strings into `console_fetch.js`, run it in DevTools
-on a logged-in lazada.co.th tab, `python split_dump.py lazada_dump.json`, then ask Claude Code to
-pick and run `render.py`. `cart.py` records what is already in the cart, and `remaining.md`
+shopping round is: add queries, `python fetch.py`, then ask Claude Code to pick and run
+`render.py`. `fetch.py` needs Chromium-Gost in `/Applications`; it opens a window with its own
+profile in `~/.lazada-scout/browser-profile` and leaves it open. Logging in to Lazada there once is
+optional and makes captchas rarer. `cart.py` records what is already in the cart, and `remaining.md`
 shows what is left; later rounds go into `BATCHES` and render to dated files.
 
 ## Design decisions
@@ -88,11 +89,13 @@ from a table it has just read will, now and then, copy it wrong; a lookup will n
 without raw data is a hard stop, and the price is "from", the minimum across variants, so size or
 colour has to be called out in the comment.
 
-**Fetch in the user's browser instead of fighting the anti-bot.** Lazada blocks scripted access
+**Fetch from a real browser instead of fighting the anti-bot.** Lazada blocks scripted access
 within a few dozen requests, and the cost of staying ahead of it is not worth it for a tool that
-runs a handful of queries per round. `console_fetch.js` runs in the user's own logged-in tab, at
-human pace, and downloads the JSON. `scrape.py` (Playwright) is kept as a fallback and is
-documented as fragile. Cost: one manual paste per round.
+runs a handful of queries per round. `fetch.py` launches Chromium-Gost normally, with a debugging
+port, attaches to it over CDP and runs the same `fetch` a lazada.co.th tab would, at human pace:
+to the site it is an ordinary browser (`navigator.webdriver` is false), unlike a browser Playwright
+launches itself. A captcha is shown in that window for a human to solve. Cost: a visible browser
+window and a dependency on one installed browser.
 
 **Bayesian rating plus a log-sold bonus.** A 5.0 from six reviews is pulled towards a prior of 4.3
 with the weight of thirty reviews; a 4.9 from two thousand barely moves. Then 0.05 per decade of
@@ -106,12 +109,13 @@ the right failure.
 Found by trial in October 2026; the non-obvious knowledge in this repository.
 
 - `/catalog/?ajax=true&q=<query>` returns the search results as JSON and survives roughly 75
-  requests before a captcha. `/tag/<english-slug>/?ajax=true` returns the same shape and lasts
-  longer, but adding `q=` or `page=1` to a `/tag/` URL triggers the captcha at once, and Thai
-  slugs do not work as tags.
-- Headless Playwright gets the captcha quickly even with a fresh context per request; `--headed`
-  lets a human solve it, which is rarely worth the time. VPN and datacenter IPs are blocked
-  outright.
+  requests before a captcha. `/tag/<slug>/?ajax=true` returns the same shape and lasts longer,
+  but adding `q=` or `page=1` to a `/tag/` URL triggers the captcha at once. Thai slugs work for
+  common phrases; a query with no tag page answers 404.
+- A Chromium that Playwright launches itself, headless or not, gets the captcha quickly even with
+  a fresh context per request. About 75 requests in a row from one IP got that IP blocked for
+  hours, plain `curl` included. VPN and datacenter IPs are blocked outright.
+- A normally launched Chromium-Gost driven over CDP passes, like the user's own browser.
 - Product pages (`/products/pdp-i<id>.html`) still fetch with plain `curl`; `variants.py` uses
   that to list size, colour and pack variants. The page carries variant names, not per-variant
   prices.
@@ -122,9 +126,10 @@ Scope: personal use, in the user's own browser session, a handful of requests pe
 
 ## Status and limits
 
-A personal tool, published for the design. Three offline tests cover the ranking order, the
-local-seller filter and the missing-id report; nothing covers the fetch path, which is the part
-that breaks. The scraping path depends on endpoints Lazada can change any day. Everything is
+A personal tool, published for the design. Offline tests cover the ranking order, the
+local-seller filter, the missing-id report and the fetcher's file naming and response
+classification; the browser part of the fetch path is checked only by real runs, and it is the
+part that breaks. The scraping path depends on endpoints Lazada can change any day. Everything is
 tuned for lazada.co.th and a Russian-speaking reader; other markets would need their own queries,
 labels and cross-border rules. There is no AI API call in the repository and there will not be:
 the AI is the operator, not a dependency.

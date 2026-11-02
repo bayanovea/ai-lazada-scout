@@ -1,5 +1,6 @@
-"""Offline tests on small fixtures: ranking order, local-seller filter, missing ids in render."""
-import analyze, render
+"""Offline tests on small fixtures: ranking order, local-seller filter, missing ids in render, fetch helpers."""
+import json
+import analyze, fetch, render
 
 def listing(iid, rating, reviews, sold, location="Bangkok", in_stock=True):
     return dict(itemId=iid, name=f"item {iid}", price="100", ratingScore=str(rating), review=str(reviews),
@@ -28,3 +29,20 @@ def test_render_reports_missing_ids_and_never_invents_numbers():
     assert missing == ["999"]
     assert "pdp-i111.html) — от ฿100 · 4.87★ (1.2K отз, 5.6K прод)" in md
     assert "999" not in md
+
+def test_fetch_todo_skips_queries_on_disk(tmp_path, monkeypatch):
+    monkeypatch.setattr(fetch, "RAW", tmp_path)
+    queries = {"A": [("x", "kitchen scale"), ("y", "coffee scale")], "B": [("z", "kitchen scale")]}
+    fetch.raw_path("coffee scale").write_text("{}")
+    assert fetch.todo(queries) == (["kitchen scale"], ["coffee scale"])
+    assert fetch.raw_path("kitchen scale").name == "ef9fe9fd3de7_p1.json"  # same name analyze.load looks up
+    assert fetch.slug("ไม้ถูพื้น ถังปั่น") == "%E0%B9%84%E0%B8%A1%E0%B9%89%E0%B8%96%E0%B8%B9%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99-%E0%B8%96%E0%B8%B1%E0%B8%87%E0%B8%9B%E0%B8%B1%E0%B9%88%E0%B8%99"
+    assert fetch.slug("Coffee Scale") == "coffee-scale"
+
+def test_fetch_classify():
+    ok = json.dumps({"mods": {"listItems": [{"itemId": "1"}]}})
+    assert fetch.classify("https://www.lazada.co.th/tag/x/?ajax=true", ok) == ("ok", [{"itemId": "1"}])
+    assert fetch.classify("https://www.lazada.co.th/tag/x/_____tmd_____/punish?x5secdata=1", "<html>")[0] == "captcha"
+    assert fetch.classify("u", json.dumps({"rgv587_flag": "sm", "url": "/_____tmd_____/punish"}))[0] == "captcha"
+    assert fetch.classify("u", "<html>404</html>") == ("failed", None)
+    assert fetch.classify("u", "{}") == ("failed", None)

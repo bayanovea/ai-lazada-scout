@@ -8,5 +8,5 @@ data/candidates.txt
 data/headed.log
 shortlist-*.md
 remaining.md
-.claude/
+.claude/settings.local.json
 .DS_Store
